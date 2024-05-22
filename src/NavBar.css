@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+}
+
+.navbar{
+    background-color: #6cb6ef;
+    padding: 10px;
+    justify-content: space-between; /* Distribuir los elementos horizontalmente con espacio entre ellos */
+}
+
+.navbar-container{
+    display: flex;
+    align-items: center;
+}
+
+.navbar-name{
+    font-weight: bold; /* Texto mas grueso */
+    font-size: 1rem; /* Tamaño de fuente */
+}
+
+.navbar-search{
+    margin-right: 20px; /* Margen derecho al contenedor de la barra de búsqueda */
+    margin-left: auto;
+}
+
+.navbar-search input{
+    padding: 10px;
+}
+
+.navbar-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .navbar-actions .rounded-button {
+    width: 50px;
+    height: 50px; 
+    padding: 0; /* Elimina el padding interno */
+    border: none;
+    border-radius: 50%; /* Hace que el botón sea redondo */
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
