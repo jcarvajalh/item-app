@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Modal from 'react-modal';
 import { useSpring, animated } from 'react-spring';
+import Modal from 'react-modal';
+import axios from 'axios'; // Importa Axios para realizar solicitudes HTTP
+import SearchBar from './searchBar.jsx';
 import './SectionItem.css';
 
 // Configuración del elemento raíz para el modal
@@ -13,6 +15,7 @@ function SectionItem() {
 
   // Estado para almacenar la lista de productos
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]); // Estado para los productos filtrados
 
   //Estado para las notificaciones
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
@@ -74,16 +77,63 @@ function SectionItem() {
     handleCloseAddItemModal();
   };
 
+  //Función para eliminar un prodcuto de la lista
+  const handleDeleteProduct = async (productId) => {
+    try {
+      // Envía una solicitud DELETE a la API para eliminar el producto específico
+      const response = await fetch(`https://fakestoreapi.com/products/${productId}`, {
+        method: "DELETE"
+      });
+  
+      // Verifica si la eliminación fue exitosa
+      if (response.ok) {
+        // Filtra los productos para mantener solo aquellos cuyo ID no coincida con el ID del producto a eliminar
+        const updatedProducts = products.filter(product => product.id !== productId);
+        setProducts(updatedProducts); // Actualiza el estado con la lista de productos actualizada
+        // Muestra una notificación de éxito
+        setNotification({ show: true, message: 'Producto eliminado exitosamente', type: 'success' });
+      } else {
+        console.error('No se pudo eliminar el producto');
+      }
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
+  };  
+  
+  //Efecto para la ocultación de la notificación al eliminar el producto
   useEffect(() => {
     let timer;
     if (notification.show) {
+      // Si la notificación está visible, establece un temporizador para ocultarla después de 3 segundos
       timer = setTimeout(() => {
         setNotification(prev => ({ ...prev, show: false }));
-      }, 5000); //Tiempo que dura la animación
+      }, 2000);
     }
-
-    return () => clearTimeout(timer); //Reiniciar notificación
+    return () => clearTimeout(timer); // Reiniciar la animación
   }, [notification]);
+  
+
+  // Función para buscar productos por su nombre/título
+  const searchProducts = (searchTerm) => {
+    const filtered = products.filter(product =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
+  // Obtener la lista de productos cuando el componente se monta
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('https://fakestoreapi.com/products');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error al obtener los productos:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <div className="main-section">
@@ -93,7 +143,8 @@ function SectionItem() {
           Agregar elemento +
         </button>
         <div className="navbar-search"> {/* Contenedor para el search */}
-          <input type="text" placeholder="  Buscar item..." />
+          {/* Utiliza el componente SearchBar para la barra de búsqueda */}
+          <SearchBar onSearch={searchProducts} />
         </div>
       </div>
 
@@ -115,7 +166,7 @@ function SectionItem() {
                 price: parseFloat(formData.get('itemPrice')),
                 description: formData.get('itemDescription'),
                 category: formData.get('itemCateg'),
-                image: formData.get('itemPhoto'), // Obtiene la URL de la imagen del campo de entrada
+                image: formData.get('itemPhoto'), // Obtiener la URL de la imagen del campo de entrada
               };
               handleAddProduct(newProduct); // Agrega el nuevo producto a la lista
             }}>
@@ -136,14 +187,19 @@ function SectionItem() {
         </animated.div>
       </Modal>
 
-      {/* Muestra la lista de productos */}
+      {/* Lista de productos */}
       <div className="product-list">
-        {products.map(product => (
+        {/* Usar filteredProducts en lugar de products para mostrar solo los productos filtrados */}
+        {filteredProducts.map(product => (
           <div key={product.id} className="product-card">
+            {/* Mostrar título, descripción, precio e imagen del producto */}
             <img src={product.image} alt={product.title} />
             <h3>{product.title}</h3>
             <p>{product.description}</p>
             <p>Precio: {product.price} USD</p>
+            
+            {/* Botón de eliminar */}
+            <button className="delete-button" onClick={() => handleDeleteProduct(product.id)}>Eliminar</button>
           </div>
         ))}
       </div>
@@ -159,3 +215,4 @@ function SectionItem() {
 }
 
 export default SectionItem;
+

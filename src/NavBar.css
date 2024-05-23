@@ -20,19 +20,23 @@ body{
   /* Estilos para el contenedor del nombre */
   .navbar-name {
     margin: 0;                     /* Elimina el margen predeterminado */
+    margin-left: 50px;
   }
   
   /* Estilos para el contenedor de las acciones */
   .navbar-actions {
     margin: 0;                     /* Elimina el margen predeterminado */
+    margin-right: 50px;
   }
   
   /* Estilos para el botón */
   .btn {
-    padding: 8px 16px;             /* Padding interno del botón */
+    
+    width: 50px;
+    height: 50px;
     border: none;                  /* Elimina el borde del botón */
     cursor: pointer;               /* Cambia el cursor al pasar sobre el botón */
-    color: white;                  /* Color del texto del botón */
+    
   }
   
   .btn-danger {
@@ -45,6 +49,6 @@ body{
   
   /* Bordes redondeados para el botón */
   .rounded-button {
-    border-radius: 50%;            /* Hace el botón redondo */
+    border-radius: 100%;            /* Hace el botón redondo */
   }
   
