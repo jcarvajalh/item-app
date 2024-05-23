@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import React, { useState }            from 'react';
+import Avatar                         from '@mui/material/Avatar';
+import Button                         from '@mui/material/Button';
+import CssBaseline                    from '@mui/material/CssBaseline';
+import TextField                      from '@mui/material/TextField';
+import Box                            from '@mui/material/Box';
+import LockOutlinedIcon               from '@mui/icons-material/LockOutlined';
+import Typography                     from '@mui/material/Typography';
+import Container                      from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Card                           from '@mui/material/Card';
+import CardContent                    from '@mui/material/CardContent';
+import Snackbar                       from '@mui/material/Snackbar';
+import Alert                          from '@mui/material/Alert';
 
 
 const theme = createTheme();
 
 export default function Login({ onLoginSuccess }) {
+
+  //Variable para el estado de username
   const [username, setUsername] = useState('');
+  //Variable para el estado de la contraseña
   const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false); // Estado para controlar la visibilidad de la notificación
   const [errorMessage, setErrorMessage] = useState(''); // Estado para almacenar el mensaje de error

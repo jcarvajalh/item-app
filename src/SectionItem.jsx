@@ -123,7 +123,7 @@ function SectionItem() {
     setFilteredProducts(filtered);
   };
 
-  // Obtener la lista de productos cuando el componente se monta
+  // Obtener la lista de productos
   useEffect(() => {
     const fetchProducts = async () => {
       try {
