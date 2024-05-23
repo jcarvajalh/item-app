@@ -4,7 +4,7 @@ body{
   }
   .navbar {
     background-color: #0C1B33;     /* Color de fondo del navbar */
-    padding: 10px 20px;            /* Padding interno del navbar */
+    padding: 10px 20px;              /* Padding interno del navbar */
     border-bottom: 1px solid #000000; /* Línea inferior del navbar */
     box-shadow: 0 20px 30px rgba(10, 9, 9, 0.521); /* Agrega una sombra */
   }

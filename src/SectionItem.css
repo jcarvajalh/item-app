@@ -104,3 +104,37 @@
   color: white;
   margin-top: 10px;
 }
+
+.notification {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.notification.success {
+  background-color: #28a745;
+}
+
+.notification.error {
+  background-color: #dc3545;
+}
+
+.notification.hide {
+  opacity: 0;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 5;
+  }
+  to {
+    opacity: 1;
+  }
+}
