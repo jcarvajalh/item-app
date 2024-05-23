@@ -1,48 +1,50 @@
 body{
     margin: 0;
-}
-
-.navbar{
-    background-color: #6cb6ef;
-    padding: 10px;
-    justify-content: space-between; /* Distribuir los elementos horizontalmente con espacio entre ellos */
-}
-
-.navbar-container{
-    display: flex;
-    align-items: center;
-}
-
-.navbar-name{
-    font-weight: bold; /* Texto mas grueso */
-    font-size: 1rem; /* Tamaño de fuente */
-}
-
-.navbar-search{
-    margin-right: 20px; /* Margen derecho al contenedor de la barra de búsqueda */
-    margin-left: auto;
-}
-
-.navbar-search input{
-    padding: 10px;
-}
-
-.navbar-actions {
-    display: flex;
-    justify-content: flex-end;
+    background-color: #c4c4c4;
+  }
+  .navbar {
+    background-color: #0C1B33;     /* Color de fondo del navbar */
+    padding: 10px 20px;            /* Padding interno del navbar */
+    border-bottom: 1px solid #000000; /* Línea inferior del navbar */
+    box-shadow: 0 20px 30px rgba(10, 9, 9, 0.521); /* Agrega una sombra */
   }
   
-  .navbar-actions .rounded-button {
-    width: 50px;
-    height: 50px; 
-    padding: 0; /* Elimina el padding interno */
-    border: none;
-    border-radius: 50%; /* Hace que el botón sea redondo */
-    cursor: pointer;
-    margin-left: auto;
+  /* Contenedor principal del contenido del navbar */
+  .navbar-container {
+    display: flex;                 /* Utiliza flexbox para organizar los elementos en una fila */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center;           /* Alinea los elementos verticalmente al centro */
+    color: #ffffff;
+  }
+  
+  /* Estilos para el contenedor del nombre */
+  .navbar-name {
+    margin: 0;                     /* Elimina el margen predeterminado */
+  }
+  
+  /* Estilos para el contenedor de las acciones */
+  .navbar-actions {
+    margin: 0;                     /* Elimina el margen predeterminado */
+  }
+  
+  /* Estilos para el botón */
+  .btn {
+    padding: 8px 16px;             /* Padding interno del botón */
+    border: none;                  /* Elimina el borde del botón */
+    cursor: pointer;               /* Cambia el cursor al pasar sobre el botón */
+    color: white;                  /* Color del texto del botón */
   }
   
   .btn-danger {
-    background-color: #dc3545;
-    color: white;
+    background-color: #dc3545;     /* Color de fondo para el botón de clase btn-danger */
   }
+  
+  .btn-danger:hover {
+    background-color: #c82333;     /* Color de fondo al pasar el mouse sobre el botón */
+  }
+  
+  /* Bordes redondeados para el botón */
+  .rounded-button {
+    border-radius: 50%;            /* Hace el botón redondo */
+  }
+  
