@@ -1,6 +1,7 @@
 import React from "react";
 import './NavBar.css'; //Aqui se importa el css para el nav.
 
+
 const NavBar = () => {
     return (
         
@@ -11,7 +12,7 @@ const NavBar = () => {
                 </div>
                 
                 <div className="navbar-actions"> {/* Contenedor para btn de cierre de sesión */}
-                    <button className="btn btn-danger rounded-button"> 😫 </button> 
+                    <p>Bienvenid@</p>
                 </div>
             </div>
         </nav>

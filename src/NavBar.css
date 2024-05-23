@@ -1,12 +1,12 @@
-body{
-    margin: 0;
-    background-color: #c4c4c4;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
   .navbar {
     background-color: #0C1B33;     /* Color de fondo del navbar */
     padding: 10px 20px;              /* Padding interno del navbar */
     border-bottom: 1px solid #000000; /* Línea inferior del navbar */
     box-shadow: 0 20px 30px rgba(10, 9, 9, 0.521); /* Agrega una sombra */
+    border: none;
   }
   
   /* Contenedor principal del contenido del navbar */
@@ -18,15 +18,28 @@ body{
   }
   
   /* Estilos para el contenedor del nombre */
-  .navbar-name {
+  .navbar-name h1{
     margin: 0;                     /* Elimina el margen predeterminado */
     margin-left: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
   }
   
   /* Estilos para el contenedor de las acciones */
   .navbar-actions {
     margin: 0;                     /* Elimina el margen predeterminado */
     margin-right: 50px;
+  }
+
+  .navbar-actions p{
+    margin: 0;                     /* Elimina el margen predeterminado */
+    margin-left: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
   }
   
   /* Estilos para el botón */

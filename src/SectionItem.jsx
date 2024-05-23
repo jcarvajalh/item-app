@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import axios from 'axios'; // Importa Axios para realizar solicitudes HTTP
 import SearchBar from './searchBar.jsx';
 import './SectionItem.css';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // Configuración del elemento raíz para el modal
 Modal.setAppElement('#root');
@@ -135,6 +137,15 @@ function SectionItem() {
     fetchProducts();
   }, []);
 
+  //Longitud maxima de la descripción
+  const maxLength = 100;
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // Función para manejar el clic en el botón "Leer más"
+  const handleReadMore = () => {
+    setShowFullDescription(true);
+  };
+
   return (
     <div className="main-section">
       <div className="title-section">
@@ -195,11 +206,34 @@ function SectionItem() {
             {/* Mostrar título, descripción, precio e imagen del producto */}
             <img src={product.image} alt={product.title} />
             <h3>{product.title}</h3>
-            <p>{product.description}</p>
+                <p>
+                   {/* Mostrar una parte de la descripción */}
+                   {showFullDescription ? product.description : `${product.description.slice(0, maxLength)}...`}
+                   {/* Mostrar el botón "Leer más" si la descripción es más larga que la longitud máxima */}
+                   {product.description.length > maxLength && (
+                     <button className="leer-mas" onClick={handleReadMore}>
+                       Leer más...
+                     </button>
+                )}
+              </p>
             <p>Precio: {product.price} USD</p>
             
             {/* Botón de eliminar */}
-            <button className="delete-button" onClick={() => handleDeleteProduct(product.id)}>Eliminar</button>
+            <IconButton onClick={() => handleDeleteProduct(product.id)} aria-label="Eliminar" color="error"
+               sx={{ bgcolor:'#ffffff',
+                     border: '2px solid transparent', // Borde transparente normal
+                     borderRadius: '50%', // Borde redondo
+                     height: '50px',
+                     width: '50px',
+                     transition: 'border-color 0.5s ease',
+                     '&:hover': {
+                      bgcolor: 'white', // Color de fondo al pasar el mouse
+                      borderColor: 'black', // Color del borde al pasar el mouse
+                      },
+                  }} >
+
+              <DeleteIcon />
+            </IconButton>
           </div>
         ))}
       </div>
