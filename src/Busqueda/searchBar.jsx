@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import  './SectionItem.css';
+import  '../Seccion-principal/SectionItem.css';
 
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Login from './login';
-import NavBar from './NavBar'; // Importar NavBar
-import SectionItem from './SectionItem'; // Importar SectionItem
+import NavBar from './Navegación/NavBar'; // Importar NavBar desde la nueva carpeta
+import SectionItem from './Seccion-principal/SectionItem';
+
 
 
 function App() {
