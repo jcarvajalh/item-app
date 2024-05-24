@@ -146,15 +146,6 @@ const handleDeleteProduct = async (productId) => {
     
   }, []);
 
-  //Longitud maxima de la descripción
-  const maxLength = 100;
-  const [showFullDescription, setShowFullDescription] = useState(false);
-
-  // Función para manejar el clic en el botón "Leer más"
-  const handleReadMore = () => {
-    setShowFullDescription(true);
-  };
-
   return (
     <div className="main-section">
       <div className="title-section">
@@ -200,52 +191,56 @@ const handleDeleteProduct = async (productId) => {
               <input type="text" id="itemCateg" name="itemCateg" required />
               <label htmlFor="itemPhoto">URL de la Foto</label>
               <input type="text" id="itemPhoto" name="itemPhoto" required />
+              <div className="button-container">
+                 {/* Contenedor para los botones */}
               <button type="submit">Guardar</button>
               <button type="button" onClick={handleCloseAddItemModal}>Cancelar</button>
+            </div>
             </form>
           </div>
         </animated.div>
       </Modal>
 
       {/* Lista de productos */}
-      <div className="product-list">
-        {/* Usar filteredProducts en lugar de products para mostrar solo los productos filtrados */}
-        {filteredProducts.map(product => (
-          <div key={product.id} className="product-card">
-            {/* Mostrar título, descripción, precio e imagen del producto */}
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-                <p>
-                   {/* Mostrar una parte de la descripción */}
-                   {showFullDescription ? product.description : `${product.description.slice(0, maxLength)}...`}
-                   {/* Mostrar el botón "Leer más" si la descripción es más larga que la longitud máxima */}
-                   {product.description.length > maxLength && (
-                     <button className="leer-mas" onClick={handleReadMore}>
-                       Leer más...
-                     </button>
-                )}
-              </p>
-            <p>Precio: {product.price} USD</p>
+    <div className="product-list">
+          {/* Usar filteredProducts en lugar de products para mostrar solo los productos filtrados */}
+          {filteredProducts.map(product => (
+            <div key={product.id} className="product-card">
             
-            {/* Botón de eliminar */}
-            <IconButton onClick={() => handleDeleteProduct(product.id)} aria-label="Eliminar" color="error"
-               sx={{ bgcolor:'#ffffff',
-                     border: '2px solid transparent', // Borde transparente normal
-                     borderRadius: '50%', // Borde redondo
-                     height: '50px',
-                     width: '50px',
-                     transition: 'border-color 0.5s ease',
-                     '&:hover': {
-                      bgcolor: 'white', // Color de fondo al pasar el mouse
-                      borderColor: 'black', // Color del borde al pasar el mouse
-                      },
-                  }} >
+              {/* Mostrar título, descripción, precio e imagen del producto */}
+              <img src={product.image} alt={product.title} />
+              <h3>{product.title}</h3>
+              <div className="description-box">
+                {/* Mostrar la descripción completa si supera los 125 caracteres */}
+              <div className="description-container">
+                {product.description.length > 125 ? (
+                  <p className="scrollable-description">{product.description}</p>
+                ) : (
+                  <p>{product.description}</p>
+                )}
+              </div>
+            </div>
 
-              <DeleteIcon />
-            </IconButton>
-          </div>
-        ))}
-      </div>
+        <p>Precio: {product.price} USD</p>
+
+        {/* Botón de eliminar */}
+        <IconButton onClick={() => handleDeleteProduct(product.id)} aria-label="Eliminar" color="error"
+          sx={{ bgcolor:'#ffffff',
+                border: '2px solid transparent', // Borde transparente normal
+                borderRadius: '50%', // Borde redondo
+                height: '50px',
+                width: '50px',
+                transition: 'border-color 0.5s ease',
+                '&:hover': {
+                  bgcolor: 'white', // Color de fondo al pasar el mouse
+                  borderColor: 'black', // Color del borde al pasar el mouse
+                  },
+              }} >
+            <DeleteIcon />
+          </IconButton>
+        </div>
+      ))}
+    </div>
 
       {/* Mostrar notificación */}
       {notification.show && (

@@ -16,6 +16,8 @@ body{
   cursor: pointer;
 }
 
+
+
 /* Estilos para la sección de título */
 .title-section {
   display: flex;          /* Utiliza flexbox para organizar los elementos en una fila */
@@ -145,12 +147,15 @@ body{
 .form-modal button[type="submit"] {
   background-color: #28a745; /* Color para el botón de guardar */
   color: white;
+  width: 100px;
 }
 
 .form-modal button[type="button"] {
   background-color: #dc3545; /* Color para el botón de cancelar */
   color: white;
   margin-top: 10px;
+  width: 100px;
+  margin-left: 10px;
 }
 
 .product-list {
@@ -181,6 +186,30 @@ body{
   border-radius: 5px;
   margin-top: 10px;
   align-self: center; /* Alinea la imagen al centro */
+}
+
+/* Estilo para la descripción truncada */
+.truncated-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Estilo para la descripción expandida */
+.expanded-description {
+  overflow-y: auto;
+  max-height: 100px; /* Establece la altura máxima para mostrar el scroll */
+}
+
+/* Estilo para el contenedor de la descripción */
+.description-container {
+  max-height: 100px; /* Altura máxima para mostrar el scroll */
+  overflow-y: auto; /* Agrega scroll vertical si la descripción es más larga */
+}
+
+/* Estilo para la descripción que puede hacer scroll */
+.scrollable-description {
+  margin-bottom: 0; /* Elimina el margen inferior para evitar espacio adicional */
 }
 
 .leer-mas{
